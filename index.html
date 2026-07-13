@@ -1,221 +1,291 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<!-- ✅ EP KHONG LUU DEM -->
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHOP ALL FREE FIRE - TRUNGSANG X CHEAT</title>
-<style>
-/* ==== TOAN BO KHONG CON GI CHE LAN NUA ==== */
-html,body{margin:0;padding:0;width:100%;height:100%;background:#05050a;color:#fff;font-family:Arial}
-
-/* ✅ NEN O LOP 0 DUOI CUNG */
-.nen{
-    position:fixed; top:0; left:0; width:100%; height:100%;
-    z-index:0 !important;
-    background:#05050a;
-    overflow:hidden;
-    pointer-events:none;
-}
-.nen b{
-    position:absolute; width:3px; height:3px; background:#00e1ff;
-    box-shadow:0 0 6px #00e1ff; border-radius:50%;
-    animation:bay 10s linear infinite;
-}
-@keyframes bay{
-    0%{transform:translateY(110vh);opacity:0}
-    10%{opacity:.8}
-    90%{opacity:.8}
-    100%{transform:translateY(-110vh);opacity:0}
-}
-
-/* ✅ LOADING O LOP 99999 TREN HET */
-#load{
-    position:fixed; top:0; left:0; width:100%; height:100%;
-    background:#000; z-index:99999 !important;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-}
-#load.an{display:none !important}
-#pt{font-size:60px;font-weight:900}
-.bar{width:70%;max-width:350px;height:6px;background:#222;border-radius:99px;overflow:hidden}
-.bar>div{height:100%;width:0%;background:linear-gradient(90deg,#06ffa7,#00d4ff,#ff3bd4)}
-
-/* ✅ NOI DUNG CHINH O LOP 10 → LUON NHIN THAY */
-#body{
-    position:relative; z-index:10 !important;
-    text-align:center; padding:20px 10px;
-}
-.chu{
-    font-weight:900;
-    background:linear-gradient(135deg,#fff,#7df9ff,#ff79e0,#fff2a8);
-    background-size:200% 200%;
-    -webkit-background-clip:text;background-clip:text;color:transparent;
-    animation:mau 4s linear infinite;
-    text-shadow:0 0 8px #00e1ffaa, 0 2px 0 #000;
-}
-@keyframes mau{to{background-position:200% 0}}
-.vien{
-    position:relative;
-    background:rgba(8,10,22,.6);
-    border:1px solid #00e1ff44;
-    border-radius:12px;
-    padding:10px;
-    margin:6px;
-}
-.nut{
-    background:linear-gradient(135deg,#00c6ff,#8a2be2);
-    color:#fff; border:none; padding:12px 28px; border-radius:10px;
-    font-weight:900; font-size:18px; cursor:pointer;
-    box-shadow:0 0 15px #00c6ff88;
-}
-.ds{display:grid;grid-template-columns:1fr 1fr;max-width:650px;margin:14px auto}
-.ds.an{display:none}
-.sp{cursor:pointer}
-.sp.full{grid-column:1 / -1}
-
-/* ✅ NHAC O LOP 50 */
-.nhac{position:fixed;right:8px;bottom:8px;z-index:50 !important}
-
-.modal{display:none;position:fixed;inset:0;z-index:80 !important;background:#000000c0;align-items:center;justify-content:center;padding:10px}
-.modal.hien{display:flex}
-.box{width:100%;max-width:440px}
-a{color:#7df9ff}
-</style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SHOP ALL FREE FIRE - TRUNGSANG X CHEAT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        main: '#ffffff',
+                        glow: '#00ffff',
+                        dark: '#000000',
+                        accent: '#ff00ff',
+                    },
+                    fontFamily: {
+                        game: ['"Arial Black"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            /* Hiệu ứng chữ 3D phát sáng viền */
+            .text-glow {
+                text-shadow: 0 0 5px #fff, 0 0 10px #00ffff, 0 0 15px #00ffff, 0 0 20px #00ffff;
+                animation: textPulse 2s infinite alternate;
+            }
+            .text-3d-custom {
+                text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 0 2px 0 #000;
+                transform: perspective(500px) rotateX(5deg);
+            }
+            .border-glow {
+                box-shadow: 0 0 8px #fff, 0 0 15px #00ffff, inset 0 0 8px rgba(0,255,255,0.3);
+                animation: borderPulse 3s infinite alternate;
+            }
+            .btn-hover {
+                transition: all 0.3s ease;
+            }
+            .btn-hover:hover {
+                transform: translateY(-3px) scale(1.02);
+                box-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff;
+            }
+            @keyframes textPulse {
+                0% { opacity: 0.8; text-shadow: 0 0 5px #fff, 0 0 10px #00ffff, 0 0 15px #00ffff; }
+                100% { opacity: 1; text-shadow: 0 0 8px #fff, 0 0 15px #00ffff, 0 0 25px #00ffff, 0 0 35px #00ffff; }
+            }
+            @keyframes borderPulse {
+                0% { box-shadow: 0 0 8px #fff, 0 0 15px #00ffff, inset 0 0 8px rgba(0,255,255,0.3); }
+                100% { box-shadow: 0 0 12px #fff, 0 0 25px #00ffff, inset 0 0 12px rgba(0,255,255,0.5); }
+            }
+            @keyframes loadBar {
+                0% { width: 0%; }
+                100% { width: 100%; }
+            }
+            .load-animate {
+                animation: loadBar 4s ease-out forwards;
+            }
+            .bg-custom {
+                background: linear-gradient(135deg, #0a0a1a, #1a0a2a, #0a1a2a);
+                background-size: 400% 400%;
+                animation: bgMove 15s ease infinite;
+            }
+            @keyframes bgMove {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="bg-custom min-h-screen font-game text-main overflow-x-hidden">
+    <!-- Nhạc nền tự động phát (bật âm thanh khi trang tải) -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
+    
 
-<!-- NEN HAT -->
-<div class="nen" id="nen"></div>
-
-<!-- LOADING 0-100% -->
-<div id="load">
-    <div class="chu" style="font-size:22px">TRUNGSANG X CHEAT 🚀</div>
-    <div id="pt" class="chu">0%</div>
-    <div class="bar"><div id="bar"></div></div>
-    <div style="margin-top:10px;color:#a5f3fc;font-size:12px">Đang vào shop...</div>
-</div>
-
-<!-- NHAC NU VIET NHAC GOC -->
-<div class="nhac vien">
-    <button id="btN" class="nut" style="width:32px;height:32px;padding:0;border-radius:50%;font-size:14px">
-        <i class="fa-solid fa-volume-high"></i>
-    </button>
-    <input id="vl" type="range" min="0" max="1" step="0.05" value="0.35" style="width:70px">
-    <span style="font-size:10px;color:#a5f3fc">Nhạc Nữ VN</span>
-</div>
-<audio id="nhac" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0b8f8b8c8.mp3?filename=beautiful-piano-amp-girl-voice-142639.mp3&v=2" type="audio/mpeg">
-
-
-<!-- ✅ TOAN BO NOI DUNG BAN YEU CAU → HIEN NGAY KHI MO RA -->
-<div id="body">
-    <h1 class="chu" style="font-size:22px">CHÀO MỪNG ĐẾN VỚI</h1>
-    <h2 class="chu" style="font-size:28px;margin:4px 0">SHOP ALL FREE FIRE</h2>
-    <h3 class="chu" style="font-size:18px;margin-bottom:16px">TRUNGSANG X CHEAT 🚀</h3>
-
-    <button class="nut" onclick="moShop()">🛒 SHOP ALL</button>
-
-    <div class="ds an" id="ds">
-        <div class="vien sp" onclick="xem(1)"><div class="chu" style="font-size:14px">DRIP MENU, PROXY ADR 🚀</div></div>
-        <div class="vien sp" onclick="xem(2)"><div class="chu" style="font-size:14px">FLUORITE 🚀</div></div>
-        <div class="vien sp" onclick="xem(3)"><div class="chu" style="font-size:14px">MIGUL LITE 🚀</div></div>
-        <div class="vien sp" onclick="xem(4)"><div class="chu" style="font-size:14px">MIGUL PRO 🚀</div></div>
-        <div class="vien sp" onclick="xem(5)"><div class="chu" style="font-size:14px">PROXY VIP V2 🚀 (All AIM)</div></div>
-        <div class="vien sp" onclick="xem(6)"><div class="chu" style="font-size:14px">CHỨNG CHỈ 👑ESGIN💎</div></div>
-        <div class="vien sp full" onclick="xem(7)"><div class="chu" style="font-size:14px">👾 THÔNG TIN ADMIN</div></div>
+    <!-- Màn hình chào mừng (hiện 5 giây) -->
+    <div id="welcomeScreen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black">
+        <div class="text-center px-4">
+            <h1 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-white text-3d-custom text-glow leading-relaxed">
+                CHÀO MỪNG ĐẾN VỚI SHOP ALL FREE FIRE<br>TRUNGSANG X CHEAT🚀
+            </h1>
+        </div>
     </div>
-</div>
 
-<div class="modal" id="md"><div class="vien box" id="nd"></div><button class="nut" style="width:100%;margin-top:8px" onclick="dong()">ĐÓNG</button></div>
+    <!-- Màn hình tải -->
+    <div id="loadingScreen" class="fixed inset-0 z-40 flex flex-col items-center justify-center bg-black/95 hidden">
+        <div class="w-[80%] max-w-md">
+            <div class="text-center mb-4 text-xl text-glow">Đang tải...</div>
+            <div class="w-full h-5 bg-gray-900 rounded-full overflow-hidden border-2 border-white/30">
+                <div id="loadBar" class="h-full bg-gradient-to-r from-cyan-400 to-purple-500 load-animate"></div>
+            </div>
+            <div id="loadPercent" class="text-center mt-3 text-lg font-bold">0%</div>
+        </div>
+    </div>
 
-<script>
-// TAO HAT
-for(var i=0;i<70;i++){
-    var s=document.createElement('b');
-    s.style.left=Math.random()*100+'%';
-    s.style.animationDelay=Math.random()*10+'s';
-    s.style.animationDuration=(6+Math.random()*8)+'s';
-    document.getElementById('nen').appendChild(s);
-}
+    <!-- Nội dung trang chính -->
+    <div id="mainContent" class="container mx-auto px-4 py-8 hidden">
+        <h2 class="text-[clamp(2rem,6vw,3.5rem)] font-bold text-center mb-10 text-3d-custom text-glow">SHOP ALL</h2>
 
-// LOADING CHAY DEN 100% ROI AN DI LUON
-var p=0,bar=document.getElementById('bar'),pt=document.getElementById('pt');
-var t=setInterval(function(){
-    p++;
-    pt.textContent=p+'%';
-    bar.style.width=p+'%';
-    if(p===100){
-        clearInterval(t);
-        setTimeout(function(){document.getElementById('load').className='an'},300);
-    }
-},25);
+        <!-- Nút menu chính -->
+        <div class="max-w-2xl mx-auto space-y-4 mb-12">
+            <button onclick="toggleMenu('menuSanPham')" class="w-full py-4 px-6 text-xl font-bold border-2 border-white rounded-xl border-glow btn-hover">
+                🛒 DANH SÁCH SẢN PHẨM
+            </button>
+            <button onclick="toggleMenu('menuGia')" class="w-full py-4 px-6 text-xl font-bold border-2 border-white rounded-xl border-glow btn-hover">
+                💸 GIÁ / ALL SP
+            </button>
+            <button onclick="toggleMenu('menuAdmin')" class="w-full py-4 px-6 text-xl font-bold border-2 border-white rounded-xl border-glow btn-hover">
+                👾 THÔNG TIN ADMIN
+            </button>
+        </div>
 
-function moShop(){document.getElementById('ds').classList.toggle('an')}
+        <!-- Menu Sản phẩm -->
+        <div id="menuSanPham" class="hidden max-w-2xl mx-auto mb-12">
+            <div class="p-6 border-2 border-white/50 rounded-xl border-glow bg-black/40 space-y-4">
+                <h3 class="text-2xl font-bold text-center text-glow mb-6">DANH MỤC SẢN PHẨM</h3>
+                <div class="text-lg font-semibold py-3 px-4 border-b border-white/20">DRIP MENU, PROXY ADR 🚀</div>
+                <div class="text-lg font-semibold py-3 px-4 border-b border-white/20">FLUORITE 🚀</div>
+                <div class="text-lg font-semibold py-3 px-4 border-b border-white/20">MIGUL LITE 🚀</div>
+                <div class="text-lg font-semibold py-3 px-4 border-b border-white/20">MIGUL PRO 🚀</div>
+                <div class="text-lg font-semibold py-3 px-4 border-b border-white/20">PROXY VIP V2 🚀(All AIM)</div>
+                <div class="text-lg font-semibold py-3 px-4">CHỨNG CHỈ 👑ESGIN💎</div>
+            </div>
+        </div>
 
-var dl={
-1:`<div class="chu" style="font-size:16px">DRIP MENU ADR 🚀</div>
-<p>✅ 180.000 VNĐ 7 NGÀY 🛍️</p>
-<p>✅ 350.000 VNĐ 30 NGÀY 🛍️</p>
-<hr>
-<div class="chu" style="font-size:14px">PROXY ADR 🚀</div>
-<p>✅ 80.000 VNĐ 1 NGÀY 🛍️</p>
-<p>✅ 160.000 VNĐ 7 NGÀY 🛍️</p>
-<p>✅ 320.000 VNĐ 30 NGÀY 🛍️</p>
-<p style="color:#34d399">ANTIBAN ✅ | ALL ADR ✅</p>`,
+        <!-- Menu Giá sản phẩm -->
+        <div id="menuGia" class="hidden max-w-2xl mx-auto mb-12">
+            <div class="p-6 border-2 border-white/50 rounded-xl border-glow bg-black/40 space-y-8">
+                <!-- Sản phẩm 1 -->
+                <div>
+                    <h4 class="text-xl font-bold text-glow mb-3">DRIP MENU ADR 🚀</h4>
+                    <div class="space-y-2 pl-4">
+                        <p>180.000 VNĐ - 7 NGÀY 🛍️</p>
+                        <p>350.000 VNĐ - 30 NGÀY 🛍️</p>
+                        <p class="mt-3">PROXY ADR 🚀</p>
+                        <p>80.000 VNĐ - 1 NGÀY 🛍️</p>
+                        <p>160.000 VNĐ - 7 NGÀY 🛍️</p>
+                        <p>320.000 VNĐ - 30 NGÀY 🛍️</p>
+                        <p class="mt-2 text-green-400">ANTIBAN ✅</p>
+                        <p class="text-green-400">ALL ADR ✅</p>
+                    </div>
+                </div>
 
-2:`<div class="chu" style="font-size:16px">FLUORITE 🚀</div>
-<p>✅ 120.000 VNĐ 1 NGÀY 🛍️</p>
-<p>✅ 280.000 VNĐ 7 NGÀY 🛍️</p>
-<p>✅ 520.000 VNĐ 30 NGÀY 🛍️</p>
-<p style="color:#34d399">ANTIBAN ✅ | TIPA ALL IOS ✅</p>`,
+                <!-- Sản phẩm 2 -->
+                <div>
+                    <h4 class="text-xl font-bold text-glow mb-3">FLUORITE 🚀</h4>
+                    <div class="space-y-2 pl-4">
+                        <p>120.000 VNĐ - 1 NGÀY 🛍️</p>
+                        <p>280.000 VNĐ - 7 NGÀY 🛍️</p>
+                        <p>520.000 VNĐ - 30 NGÀY 🛍️</p>
+                        <p class="mt-2 text-green-400">ANTIBAN ✅</p>
+                        <p class="text-green-400">TÍCH HỢP TẤT CẢ IOS ✅</p>
+                    </div>
+                </div>
 
-3:`<div class="chu" style="font-size:16px">MIGUL LITE 🚀</div>
-<p>✅ 100.000 VNĐ 1 NGÀY 🛍️</p>
-<p>✅ 300.000 VNĐ 7 NGÀY 🛍️</p>
-<p>✅ 700.000 VNĐ 30 NGÀY 🛍️</p>
-<p style="color:#34d399">ANTIBAN ✅ | ALL IOS ✅</p>`,
+                <!-- Sản phẩm 3 -->
+                <div>
+                    <h4 class="text-xl font-bold text-glow mb-3">MIGUL LITE 🚀</h4>
+                    <div class="space-y-2 pl-4">
+                        <p>100.000 VNĐ - 1 NGÀY 🛍️</p>
+                        <p>300.000 VNĐ - 7 NGÀY 🛍️</p>
+                        <p>700.000 VNĐ - 30 NGÀY 🛍️</p>
+                    </div>
+                    <h4 class="text-xl font-bold text-glow mt-5 mb-3">MIGUL PRO 🚀</h4>
+                    <div class="space-y-2 pl-4">
+                        <p>25.000 VNĐ - 1 GIỜ 🛍️</p>
+                        <p>170.000 VNĐ - 1 NGÀY 🛍️</p>
+                        <p>310.000 VNĐ - 7 NGÀY 🛍️</p>
+                        <p>715.000 VNĐ - 30 NGÀY 🛍️</p>
+                        <p class="mt-2 text-green-400">ANTIBAN ✅</p>
+                        <p class="text-green-400">ALL IOS ✅</p>
+                    </div>
+                </div>
 
-4:`<div class="chu" style="font-size:16px">MIGUL PRO 🚀</div>
-<p>✅ 25.000 VNĐ 1 GIỜ 🛍️</p>
-<p>✅ 170.000 VNĐ 1 NGÀY 🛍️</p>
-<p>✅ 310.000 VNĐ 7 NGÀY 🛍️</p>
-<p>✅ 715.000 VNĐ 30 NGÀY 🛍️</p>
-<p style="color:#34d399">ANTIBAN ✅ | ALL IOS ✅</p>`,
+                <!-- Sản phẩm 4 -->
+                <div>
+                    <h4 class="text-xl font-bold text-glow mb-3">PROXY VIP V2 🚀 (ALL AIM)</h4>
+                    <div class="space-y-2 pl-4">
+                        <p>30.000 VNĐ - 1 NGÀY 🛍️</p>
+                        <p>110.000 VNĐ - 7 NGÀY 🛍️</p>
+                        <p>220.000 VNĐ - 30 NGÀY 🛍️</p>
+                    </div>
+                </div>
 
-5:`<div class="chu" style="font-size:16px">PROXY VIP V2 🚀 (ALL AIM)</div>
-<p>✅ 30.000 VNĐ 1 NGÀY 🛍️</p>
-<p>✅ 110.000 VNĐ 7 NGÀY 🛍️</p>
-<p>✅ 220.000 VNĐ 30 NGÀY 🛍️</p>`,
+                <!-- Sản phẩm 5 - Chứng chỉ -->
+                <div>
+                    <h4 class="text-xl font-bold text-glow mb-3">📋 CHỨNG CHỈ 👑ESGIN💎</h4>
+                    <div class="space-y-3 pl-4">
+                        <p>160.000 VNĐ 🛍️<br>Gói iPhone/iPad Lấy Ngay<br>Không bảo hành</p>
+                        <p>280.000 VNĐ 🛍️<br>Gói iPhone/iPad lấy ngay<br>Bảo hành 40 ngày</p>
+                        <p>320.000 VNĐ 🛍️<br>Gói iPhone/iPad lấy ngay<br>Bảo hành 300 ngày</p>
+                        <p class="mt-2 text-yellow-300">✅ Toàn bộ đều có chứng chỉ 1 năm</p>
+                    </div>
+                </div>
 
-6:`<div class="chu" style="font-size:16px">CHỨNG CHỈ 👑ESGIN💎</div>
-<p><b>📋 GIÁ / ALL SP</b></p><hr>
-<p>💎 80.000 VND 🛍️ → iPhone/iPad lấy ngay • Không BH</p>
-<p>💎 140.000 VND 🛍️ → BH 40 NGÀY</p>
-<p>💎 180.000 VND 🛍️ → BH 300 NGÀY</p>
-<p style="color:#fbbf24">🏆 Toàn bộ CHỨNG CHỈ 1 NĂM</p>`,
+                <!-- Chức năng -->
+                <div class="border-t border-white/30 pt-4">
+                    <h4 class="text-xl font-bold text-glow mb-3">⚙️ CHỨC NĂNG</h4>
+                    <p>Vì các chức năng khá dài nếu muốn biết rõ vui lòng liên hệ Admin để được tư vấn chi tiết nhé!</p>
+                </div>
+            </div>
+        </div>
 
-7:`<div class="chu" style="font-size:16px;text-align:center">👾 THÔNG TIN ADMIN</div>
-<a class="vien" style="display:block;padding:8px;margin:6px 0;text-align:center" href="https://zalo.me/0372822927" target="_blank">💬 ZALO: 0372822927</a>
-<a class="vien" style="display:block;padding:8px;margin:6px 0;text-align:center" href="https://zalo.me/g/myvfgfidweld9ovmd7t4" target="_blank">📦 BOX ZALO</a>
-<p style="text-align:center;color:#f9a8d4;font-size:12px">🛍️ Liên hệ ADMIN để mua hàng 🛍️</p>`
-};
+        <!-- Menu Admin -->
+        <div id="menuAdmin" class="hidden max-w-2xl mx-auto mb-12">
+            <div class="p-6 border-2 border-white/50 rounded-xl border-glow bg-black/40 space-y-5 text-center">
+                <h3 class="text-2xl font-bold text-glow">THÔNG TIN LIÊN HỆ ADMIN 👾</h3>
+                <a href="tel:0372822927" class="block py-3 px-5 border-2 border-white rounded-lg btn-hover text-lg">
+                    <i class="fa fa-phone-square mr-2"></i>ZALO / HOTLINE: 0372822927
+                </a>
+                <a href="https://zalo.me/g/myvfgfidweld9ovmd7t4" target="_blank" rel="noopener noreferrer" class="block py-3 px-5 border-2 border-white rounded-lg btn-hover text-lg">
+                    <i class="fa fa-users mr-2"></i>NHẬP BOX ZALO NHÓM
+                </a>
+                <p class="mt-4 text-lg">Vui lòng liên hệ ADMIN để mua những sản phẩm bạn thích nhé 🛍️</p>
+            </div>
+        </div>
 
-function xem(n){document.getElementById('nd').innerHTML=dl[n];document.getElementById('md').classList.add('hien')}
-function dong(){document.getElementById('md').classList.remove('hien')}
-document.getElementById('md').onclick=e=>{if(e.target.id==='md') dong()}
+        <!-- Nút bật/tắt nhạc -->
+        <div class="fixed bottom-6 right-6 z-30">
+            <button id="musicBtn" class="w-14 h-14 rounded-full border-2 border-white flex items-center justify-center text-xl border-glow bg-black/60">
+                <i class="fa fa-volume-up"></i>
+            </button>
+        </div>
+    </div>
 
-// NHAC CHAY CHAC
-var nh=document.getElementById('nhac'),bt=document.getElementById('btN'),ic=bt.querySelector('i');
-nh.volume=.35;
-var da=0;
-function phat(){if(!da){nh.play().then(()=>{da=1;ic.className='fa-solid fa-pause'}).catch(()=>{})}}
-['click','touchstart'].forEach(k=>addEventListener(k,phat,{once:true}));
-bt.onclick=()=>{if(nh.paused){nh.play();ic.className='fa-solid fa-pause'}else{nh.pause();ic.className='fa-solid fa-play'}}
-document.getElementById('vl').oninput=e=>nh.volume=+e.target.value;
-</script>
+    <script>
+        // Điều khiển màn chào và tải
+        setTimeout(() => {
+            document.getElementById('welcomeScreen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('welcomeScreen').classList.add('hidden');
+                document.getElementById('loadingScreen').classList.remove('hidden');
+                
+                // Đếm phần trăm tải
+                let percent = 0;
+                const interval = setInterval(() => {
+                    percent++;
+                    document.getElementById('loadPercent').textContent = percent + '%';
+                    if(percent >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            document.getElementById('loadingScreen').classList.add('hidden');
+                            document.getElementById('mainContent').classList.remove('hidden');
+                            // Phát nhạc sau khi trang tải xong
+                            document.getElementById('bgMusic').play().catch(() => {});
+                        }, 500);
+                    }
+                }, 40);
+            }, 500);
+        }, 5000);
+
+        // Ẩn/hiện menu
+        function toggleMenu(id) {
+            const menu = document.getElementById(id);
+            // Đóng các menu khác
+            document.querySelectorAll('#menuSanPham, #menuGia, #menuAdmin').forEach(el => {
+                if(el.id !== id) el.classList.add('hidden');
+            });
+            // Mở/đóng menu được chọn
+            menu.classList.toggle('hidden');
+        }
+
+        // Điều khiển nhạc
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        let isPlaying = true;
+
+        musicBtn.addEventListener('click', () => {
+            if(isPlaying) {
+                music.pause();
+                musicBtn.innerHTML = '<i class="fa fa-volume-off"></i>';
+            } else {
+                music.play();
+                musicBtn.innerHTML = '<i class="fa fa-volume-up"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Bật nhạc khi người dùng chạm vào màn hình lần đầu (tránh chặn tự động trên iOS)
+        document.addEventListener('touchstart', () => {
+            if(music.paused) music.play().catch(() => {});
+        }, { once: true });
+    </script>
 </body>
 </html>
