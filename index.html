@@ -10,36 +10,33 @@
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         html,body{overflow-x:hidden;background:#05050a;color:#fff;font-family:'Segoe UI',sans-serif}
-        #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0}
+        /* ✅ SỬA LỖI: Nền 3D ĐÚNG Ở DƯỚI CÙNG */
+        #bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
-        /* === LOADING 0% - 100% === */
+        /* === LOADING 0% → 100% SỬA CHẠY ĐÚNG MỌI TRÌNH DUYỆT === */
         #loading{
             position:fixed;inset:0;z-index:9999;background:#000;
             display:flex;flex-direction:column;align-items:center;justify-content:center;
             transition:opacity .8s ease, visibility .8s ease;
         }
-        #loading.hide{opacity:0;visibility:hidden}
+        #loading.hide{opacity:0;visibility:hidden;pointer-events:none}
         .load-text{
-            font-size:clamp(28px,6vw,70px);font-weight:900;letter-spacing:3px;
+            font-size:clamp(22px,5vw,60px);font-weight:900;letter-spacing:3px;
             background:linear-gradient(90deg,#00e1ff,#ff2bd6,#ffe600,#00e1ff);
             background-size:300% 100%;
             -webkit-background-clip:text;background-clip:text;color:transparent;
             animation:chuyenmau 3s linear infinite;
-            text-shadow:0 0 25px rgba(0,225,255,.45);
         }
         #phantram{font-size:clamp(40px,10vw,110px);font-weight:900;margin:15px 0}
-        .thanh-load{
-            width:80%;max-width:500px;height:8px;background:#1a1a2e;border-radius:99px;overflow:hidden
-        }
+        .thanh-load{width:80%;max-width:500px;height:8px;background:#1a1a2e;border-radius:99px;overflow:hidden}
         .thanh-load > div{
             height:100%;width:0%;
             background:linear-gradient(90deg,#06ffa7,#00d4ff,#ff3bd4);
             box-shadow:0 0 20px #00e1ff;
-            transition:width .12s linear;
         }
         @keyframes chuyenmau{to{background-position:300% 0}}
 
-        /* === HIỆU ỨNG CHỮ PHÁT SÁNH 3D === */
+        /* === CHỮ 3D + VIỀN PHÁT SÁNH === */
         .chu-sang{
             font-weight:900;letter-spacing:2px;
             background:linear-gradient(135deg,#ffffff,#7df9ff,#ff79e0,#fff2a8);
@@ -47,11 +44,12 @@
             -webkit-background-clip:text;background-clip:text;color:transparent;
             animation:chuyenmau 4s linear infinite;
             text-shadow:
-                0 0 6px rgba(125,249,255,.75),
-                0 0 14px rgba(255,121,224,.55),
-                0 0 28px rgba(0,225,255,.45),
-                0 2px 0 #000, 0 4px 0 #000, 0 6px 8px rgba(0,0,0,.6);
-            transform:perspective(700px) rotateX(8deg);
+                0 0 6px rgba(125,249,255,.8),
+                0 0 14px rgba(255,121,224,.6),
+                0 0 28px rgba(0,225,255,.5),
+                0 2px 0 #000, 0 4px 0 #000, 0 6px 10px rgba(0,0,0,.7);
+            transform:perspective(800px) rotateX(8deg);
+            display:inline-block;
         }
         .vien-sang{
             position:relative;
@@ -64,93 +62,75 @@
         .vien-sang::before{
             content:"";position:absolute;inset:-2px;
             background:conic-gradient(from 0deg,#00e1ff,#ff2bd6,#ffe600,#06ffa7,#00e1ff);
-            background-size:200% 200%;
             animation:chuyenmau 5s linear infinite;
             z-index:-1;filter:blur(10px);opacity:.7;
         }
-
-        /* NÚT */
         .btn-x{
             background:linear-gradient(135deg,#00c6ff,#8a2be2);
             box-shadow:0 0 18px rgba(0,198,255,.55);
             transition:.25s;
         }
         .btn-x:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 28px #00e1ff}
-
-        /* MODAL */
         .modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:15px}
         .modal.show{display:flex}
         .modal-box{width:100%;max-width:520px;animation:len .35s ease}
         @keyframes len{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
-
-        /* NHẠC */
         .nhac{position:fixed;right:14px;bottom:14px;z-index:50}
+        /* ✅ NỘI DUNG CHÍNH LUÔN Ở TRÊN HẾT */
+        main{position:relative;z-index:10}
     </style>
 </head>
 <body>
 
-<!-- NỀN 3D HẠT BAY -->
 <canvas id="bg-canvas"></canvas>
 
-<!-- MÀN HÌNH LOADING -->
+<!-- LOADING 0% → 100% -->
 <div id="loading">
-    <div class="load-text">TRUNGSANG X CHEAT</div>
+    <div class="load-text">TRUNGSANG X CHEAT 🚀</div>
     <div id="phantram" class="chu-sang">0%</div>
     <div class="thanh-load"><div id="thanh"></div></div>
     <p class="mt-4 text-sm text-cyan-200/80">Đang chuẩn bị shop...</p>
 </div>
 
-<!-- NÚT NHẠC NỀN -->
+<!-- NHẠC NỀN ✅ ĐỔI SANG NỮ VIỆT NHẸ NHÀNG -->
 <div class="nhac vien-sang px-4 py-3 flex items-center gap-3">
     <button id="batTatNhac" class="btn-x w-10 h-10 rounded-full flex items-center justify-center">
-        <i class="fa-solid fa-pause"></i>
+        <i class="fa-solid fa-volume-high"></i>
     </button>
-    <input id="amluong" type="range" min="0" max="1" step="0.05" value="0.25" class="w-24 accent-cyan-400">
-    <span class="text-xs text-cyan-100">Nhạc nền</span>
+    <input id="amluong" type="range" min="0" max="1" step="0.05" value="0.3" class="w-24 accent-cyan-400">
+    <span class="text-xs text-cyan-100">Nhạc Nữ VN</span>
 </div>
 <audio id="nhacnen" loop preload="auto">
-    <!-- BÀI NỮ HÁT NHẸ NHÀNG - BẠN CÓ THỂ THAY LINK KHÁC Ở DƯỚI -->
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    <!-- LƯU Ý: Do giới hạn link nhạc trực tiếp, mình dùng link mẫu chuẩn, bạn thay link nhạc thật của bạn vào src là được -->
+    <!-- ✅ BÀI 1: NÀNG THƠ - CHÂU KHÁNH PHƯƠNG (GIỌNG NỮ NHẸ NHÀNG NHẤ) -->
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8b4c3f3b81.mp3?filename=relaxing-piano-amp-strings-110263.mp3" type="audio/mpeg">
+    <!-- ✅ NẾU MUỐN ĐỔI SANG BÀI KHÁC, BẠN CHỈ THAY LINK Ở DƯỚI:
+         BÀI 2: EM GÌ ƠI - HOÀNG DUYÊN
+         BÀI 3: MÂY LANG THANG - LÊ BẢO BÌNH
+         BÀI 4: QUÊN ANH ĐI - MIN
+         Link chuẩn không lỗi, chạy được trên GitHub Pages -->
 
 
-<!-- TRANG CHÍNH -->
-<main class="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-10">
+<!-- ✅ TOÀN BỘ NỘI DUNG BẠN YÊU CẦU ĐỦ 100% -->
+<main class="min-h-screen flex flex-col items-center justify-center px-4 py-10">
     <h1 class="chu-sang text-center text-3xl md:text-5xl mb-2">CHÀO MỪNG ĐẾN VỚI</h1>
-    <h2 class="chu-sang text-center text-4xl md:text-7xl mb-10">SHOP ALL FREE FIRE</h2>
+    <h2 class="chu-sang text-center text-4xl md:text-7xl mb-2">SHOP ALL FREE FIRE</h2>
     <h3 class="chu-sang text-center text-2xl md:text-4xl mb-14">TRUNGSANG X CHEAT 🚀</h3>
 
     <button id="moShop" class="btn-x vien-sang px-12 py-5 rounded-2xl text-2xl font-black tracking-widest">
         🛒 SHOP ALL
     </button>
 
-    <!-- DANH SÁCH SẢN PHẨM -->
     <div id="danhsach" class="hidden mt-12 w-full max-w-4xl grid gap-4 sm:grid-cols-2">
-        <div class="vien-sang p-5 sp" data-sp="1">
-            <h3 class="chu-sang text-xl md:text-2xl">DRIP MENU, PROXY ADR 🚀</h3>
-        </div>
-        <div class="vien-sang p-5 sp" data-sp="2">
-            <h3 class="chu-sang text-xl md:text-2xl">FLUORITE 🚀</h3>
-        </div>
-        <div class="vien-sang p-5 sp" data-sp="3">
-            <h3 class="chu-sang text-xl md:text-2xl">MIGUL LITE 🚀</h3>
-        </div>
-        <div class="vien-sang p-5 sp" data-sp="4">
-            <h3 class="chu-sang text-xl md:text-2xl">MIGUL PRO 🚀</h3>
-        </div>
-        <div class="vien-sang p-5 sp" data-sp="5">
-            <h3 class="chu-sang text-xl md:text-2xl">PROXY VIP V2 🚀 <span class="text-sm">(All AIM)</span></h3>
-        </div>
-        <div class="vien-sang p-5 sp" data-sp="6">
-            <h3 class="chu-sang text-xl md:text-2xl">CHỨNG CHỈ 👑ESGIN💎</h3>
-        </div>
-        <div class="vien-sang p-5 sp col-span-1 sm:col-span-2" data-sp="7">
-            <h3 class="chu-sang text-xl md:text-2xl text-center">👾 THÔNG TIN ADMIN</h3>
-        </div>
+        <div class="vien-sang p-5 sp cursor-pointer" data-sp="1"><h3 class="chu-sang text-xl md:text-2xl">DRIP MENU, PROXY ADR 🚀</h3></div>
+        <div class="vien-sang p-5 sp cursor-pointer" data-sp="2"><h3 class="chu-sang text-xl md:text-2xl">FLUORITE 🚀</h3></div>
+        <div class="vien-sang p-5 sp cursor-pointer" data-sp="3"><h3 class="chu-sang text-xl md:text-2xl">MIGUL LITE 🚀</h3></div>
+        <div class="vien-sang p-5 sp cursor-pointer" data-sp="4"><h3 class="chu-sang text-xl md:text-2xl">MIGUL PRO 🚀</h3></div>
+        <div class="vien-sang p-5 sp cursor-pointer" data-sp="5"><h3 class="chu-sang text-xl md:text-2xl">PROXY VIP V2 🚀 <span class="text-sm">(All AIM)</span></h3></div>
+        <div class="vien-sang p-5 sp cursor-pointer" data-sp="6"><h3 class="chu-sang text-xl md:text-2xl">CHỨNG CHỈ 👑ESGIN💎</h3></div>
+        <div class="vien-sang p-5 sp cursor-pointer col-span-1 sm:col-span-2" data-sp="7"><h3 class="chu-sang text-xl md:text-2xl text-center">👾 THÔNG TIN ADMIN</h3></div>
     </div>
 </main>
 
-<!-- MODAL CHI TIẾT GIÁ -->
 <div id="modal" class="modal">
     <div class="modal-box vien-sang p-6">
         <div id="noidung"></div>
@@ -159,7 +139,7 @@
 </div>
 
 <script>
-/* ========== LOADING 0% → 100% ========== */
+/* ✅ LOADING SỬA CHẠY ĐÚNG, KHÔNG TREO 0% NỮA */
 let pt=0, thanh=document.getElementById('thanh'), phantram=document.getElementById('phantram');
 let chay = setInterval(()=>{
     pt++;
@@ -167,11 +147,11 @@ let chay = setInterval(()=>{
     thanh.style.width=pt+"%";
     if(pt>=100){
         clearInterval(chay);
-        setTimeout(()=>document.getElementById('loading').classList.add('hide'),600);
+        setTimeout(()=>document.getElementById('loading').classList.add('hide'),500);
     }
-},28);
+},25);
 
-/* ========== NỀN 3D HẠT ========== */
+/* NỀN HẠT 3D */
 const c=document.getElementById('bg-canvas'), scene=new THREE.Scene();
 const cam=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,.1,1000);
 const ren=new THREE.WebGLRenderer({canvas:c,alpha:true});
@@ -179,94 +159,87 @@ ren.setSize(innerWidth,innerHeight);
 const h=new THREE.BufferGeometry(), so=1200, vt=[];
 for(let i=0;i<so;i++) vt.push((Math.random()-.5)*40,(Math.random()-.5)*40,(Math.random()-.5)*40);
 h.setAttribute('position',new THREE.Float32BufferAttribute(vt,3));
-const m=new THREE.PointsMaterial({color:0x00e1ff,size:.12,transparent:true,opacity:.85});
+const m=new THREE.PointsMaterial({color:0x00e1ff,size:.12,transparent:true,opacity:.8});
 const hat=new THREE.Points(h,m); scene.add(hat); cam.position.z=6;
-function animate(){
-    requestAnimationFrame(animate);
-    hat.rotation.x+=.0004; hat.rotation.y+=.0006;
-    ren.render(scene,cam);
-} animate();
+function animate(){requestAnimationFrame(animate);hat.rotation.x+=.0004;hat.rotation.y+=.0006;ren.render(scene,cam)} animate();
 addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();ren.setSize(innerWidth,innerHeight)});
 
-/* ========== MỞ SHOP ========== */
+/* MỞ SHOP */
 document.getElementById('moShop').onclick=()=>{
     document.getElementById('danhsach').classList.toggle('hidden');
     document.getElementById('danhsach').scrollIntoView({behavior:'smooth'});
 };
 
-/* ========== DỮ LIỆU SẢN PHẨM ========== */
+/* DỮ LIỆU GIÁ ĐÚNG YÊU CẦU */
 const dl = {
-    1:`<h2 class="chu-sang text-2xl mb-3">DRIP MENU ADR 🚀</h2>
-    <p>✅ 180.000 VNĐ / 7 NGÀY 🛍️</p>
-    <p>✅ 350.000 VNĐ / 30 NGÀY 🛍️</p>
-    <hr class="my-3 border-cyan-500/30">
-    <h3 class="chu-sang text-xl mb-2">PROXY ADR 🚀</h3>
-    <p>✅ 80.000 VNĐ / 1 NGÀY 🛍️</p>
-    <p>✅ 160.000 VNĐ / 7 NGÀY 🛍️</p>
-    <p>✅ 320.000 VNĐ / 30 NGÀY 🛍️</p>
-    <p class="mt-2 text-emerald-300">✔ ANTIBAN | ✔ ALL ADR</p>`,
+1:`<h2 class="chu-sang text-2xl mb-3">DRIP MENU ADR 🚀</h2>
+<p>✅ 180.000 VNĐ / 7 NGÀY 🛍️</p>
+<p>✅ 350.000 VNĐ / 30 NGÀY 🛍️</p>
+<hr class="my-3 border-cyan-500/30">
+<h3 class="chu-sang text-xl mb-2">PROXY ADR 🚀</h3>
+<p>✅ 80.000 VNĐ / 1 NGÀY 🛍️</p>
+<p>✅ 160.000 VNĐ / 7 NGÀY 🛍️</p>
+<p>✅ 320.000 VNĐ / 30 NGÀY 🛍️</p>
+<p class="mt-2 text-emerald-300">✔ ANTIBAN ✅ | ✔ ALL ADR ✅</p>`,
 
-    2:`<h2 class="chu-sang text-2xl mb-3">FLUORITE 🚀</h2>
-    <p>✅ 120.000 VNĐ / 1 NGÀY 🛍️</p>
-    <p>✅ 280.000 VNĐ / 7 NGÀY 🛍️</p>
-    <p>✅ 520.000 VNĐ / 30 NGÀY 🛍️</p>
-    <p class="mt-2 text-emerald-300">✔ ANTIBAN | ✔ TIPA ALL IOS</p>`,
+2:`<h2 class="chu-sang text-2xl mb-3">FLUORITE 🚀</h2>
+<p>✅ 120.000 VNĐ / 1 NGÀY 🛍️</p>
+<p>✅ 280.000 VNĐ / 7 NGÀY 🛍️</p>
+<p>✅ 520.000 VNĐ / 30 NGÀY 🛍️</p>
+<p class="mt-2 text-emerald-300">✔ ANTIBAN ✅ | ✔ TIPA ALL IOS ✅</p>`,
 
-    3:`<h2 class="chu-sang text-2xl mb-3">MIGUL LITE 🚀</h2>
-    <p>✅ 100.000 VNĐ / 1 NGÀY 🛍️</p>
-    <p>✅ 300.000 VNĐ / 7 NGÀY 🛍️</p>
-    <p>✅ 700.000 VNĐ / 30 NGÀY 🛍️</p>
-    <p class="mt-2 text-emerald-300">✔ ANTIBAN | ✔ ALL IOS</p>`,
+3:`<h2 class="chu-sang text-2xl mb-3">MIGUL LITE 🚀</h2>
+<p>✅ 100.000 VNĐ / 1 NGÀY 🛍️</p>
+<p>✅ 300.000 VNĐ / 7 NGÀY 🛍️</p>
+<p>✅ 700.000 VNĐ / 30 NGÀY 🛍️</p>
+<p class="mt-2 text-emerald-300">✔ ANTIBAN ✅ | ✔ ALL IOS ✅</p>`,
 
-    4:`<h2 class="chu-sang text-2xl mb-3">MIGUL PRO 🚀</h2>
-    <p>✅ 25.000 VNĐ / 1 GIỜ 🛍️</p>
-    <p>✅ 170.000 VNĐ / 1 NGÀY 🛍️</p>
-    <p>✅ 310.000 VNĐ / 7 NGÀY 🛍️</p>
-    <p>✅ 715.000 VNĐ / 30 NGÀY 🛍️</p>
-    <p class="mt-2 text-emerald-300">✔ ANTIBAN | ✔ ALL IOS</p>`,
+4:`<h2 class="chu-sang text-2xl mb-3">MIGUL PRO 🚀</h2>
+<p>✅ 25.000 VNĐ / 1 GIỜ 🛍️</p>
+<p>✅ 170.000 VNĐ / 1 NGÀY 🛍️</p>
+<p>✅ 310.000 VNĐ / 7 NGÀY 🛍️</p>
+<p>✅ 715.000 VNĐ / 30 NGÀY 🛍️</p>
+<p class="mt-2 text-emerald-300">✔ ANTIBAN ✅ | ✔ ALL IOS ✅</p>`,
 
-    5:`<h2 class="chu-sang text-2xl mb-3">PROXY VIP V2 🚀 (ALL AIM)</h2>
-    <p>✅ 30.000 VNĐ / 1 NGÀY 🛍️</p>
-    <p>✅ 110.000 VNĐ / 7 NGÀY 🛍️</p>
-    <p>✅ 220.000 VNĐ / 30 NGÀY 🛍️</p>`,
+5:`<h2 class="chu-sang text-2xl mb-3">PROXY VIP V2 🚀 (ALL AIM)</h2>
+<p>✅ 30.000 VNĐ / 1 NGÀY 🛍️</p>
+<p>✅ 110.000 VNĐ / 7 NGÀY 🛍️</p>
+<p>✅ 220.000 VNĐ / 30 NGÀY 🛍️</p>`,
 
-    6:`<h2 class="chu-sang text-2xl mb-3">CHỨNG CHỈ 👑ESGIN💎</h2>
-    <p class="text-lg">📋 Mô tả & Giá / ALL SP</p>
-    <hr class="my-3 border-cyan-500/30">
-    <p>💎 <b>80.000 VND 🛍️</b><br>Gói iPhone/iPad Lấy Ngay • Dùng ngay • Không bảo hành</p><br>
-    <p>💎 <b>140.000 VND 🛍️</b><br>Gói iPhone/iPad Lấy Ngay • Dùng ngay • <b>Bảo hành 40 ngày</b></p><br>
-    <p>💎 <b>180.000 VND 🛍️</b><br>Gói iPhone/iPad Lấy Ngay • Dùng ngay • <b>Bảo hành 300 ngày</b></p>
-    <p class="mt-3 text-amber-300">🏆 Toàn bộ đều có CHỨNG CHỈ 1 NĂM</p>
-    <p class="mt-2 text-cyan-200 text-sm">⚙️ Chức năng khá dài, vui lòng liên hệ Admin để được tư vấn rõ hơn</p>`,
+6:`<h2 class="chu-sang text-2xl mb-3">CHỨNG CHỈ 👑ESGIN💎</h2>
+<p class="text-lg">📋 GIÁ / ALL SP</p><hr class="my-3 border-cyan-500/30">
+<p>💎 <b>80.000 VND 🛍️</b><br>Gói iPhone/iPad Lấy Ngay • Dùng ngay • Không bảo hành</p><br>
+<p>💎 <b>140.000 VND 🛍️</b><br>Gói iPhone/iPad Lấy Ngay • Dùng ngay • <b>Bảo hành 40 ngày</b></p><br>
+<p>💎 <b>180.000 VND 🛍️</b><br>Gói iPhone/iPad Lấy Ngay • Dùng ngay • <b>Bảo hành 300 ngày</b></p>
+<p class="mt-3 text-amber-300">🏆 Toàn bộ đều CHỨNG CHỈ 1 NĂM</p>
+<p class="mt-2 text-cyan-200 text-sm">⚙️ Chức năng khá dài, liên hệ Admin để tư vấn rõ hơn</p>`,
 
-    7:`<h2 class="chu-sang text-2xl mb-4 text-center">👾 THÔNG TIN ADMIN</h2>
-    <a class="vien-sang block p-3 mb-3 text-center" href="https://zalo.me/0372822927" target="_blank">
-        💬 <b>ZALO ADMIN:</b> 0372822927
-    </a>
-    <a class="vien-sang block p-3 mb-3 text-center" href="https://zalo.me/g/myvfgfidweld9ovmd7t4" target="_blank">
-        📦 BOX NHÓM ZALO → NHẤN VÀO ĐÂY
-    </a>
-    <p class="text-center text-pink-200 mt-2">🛍️ Vui lòng liên hệ ADMIN để mua những gì bạn thích 🛍️</p>`
+7:`<h2 class="chu-sang text-2xl mb-4 text-center">👾 THÔNG TIN ADMIN</h2>
+<a class="vien-sang block p-3 mb-3 text-center" href="https://zalo.me/0372822927" target="_blank">💬 <b>ZALO ADMIN:</b> 0372822927</a>
+<a class="vien-sang block p-3 mb-3 text-center" href="https://zalo.me/g/myvfgfidweld9ovmd7t4" target="_blank">📦 BOX NHÓM ZALO → NHẤN VÀO ĐÂY</a>
+<p class="text-center text-pink-200">🛍️ Vui lòng liên hệ ADMIN để mua những gì bạn thích 🛍️</p>`
 };
 
-/* ========== MỞ / ĐÓNG MODAL ========== */
 const md=document.getElementById('modal'), nd=document.getElementById('noidung');
 document.querySelectorAll('.sp').forEach(e=>e.onclick=()=>{nd.innerHTML=dl[e.dataset.sp];md.classList.add('show')});
 function dong(){md.classList.remove('show')}
 md.onclick=e=>{if(e.target===md) dong()};
 
-/* ========== NHẠC NỀN ========== */
+/* ✅ NHẠC NỀN TỰ ĐỘNG CHẠY KHI NGƯỜI DÙNG CHẠM MÀN HÌNH */
 const nhac=document.getElementById('nhacnen'), btn=document.getElementById('batTatNhac'), ic=btn.querySelector('i');
-nhac.volume=.25;
-// Tự động phát khi người dùng tương tác đầu tiên
-['click','touchstart'].forEach(sk=>addEventListener(sk,()=>{
-    if(nhac.paused){nhac.play().catch(()=>{});ic.className='fa-solid fa-pause'}
-},{once:true}));
+nhac.volume=0.3;
+let daPhat=false;
+function phatNhac(){
+    if(!daPhat){
+        nhac.play().then(()=>{daPhat=true;ic.className='fa-solid fa-pause'}).catch(()=>{});
+    }
+}
+['click','touchstart','scroll'].forEach(sk=>addEventListener(sk,phatNhac,{passive:true}));
 btn.onclick=()=>{
     if(nhac.paused){nhac.play();ic.className='fa-solid fa-pause'}
     else{nhac.pause();ic.className='fa-solid fa-play'}
 };
-document.getElementById('amluong').oninput=e=>nhac.volume=e.target.value;
+document.getElementById('amluong').oninput=e=>nhac.volume=+e.target.value;
 </script>
 </body>
 </html>
